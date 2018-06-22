@@ -1,0 +1,6 @@
+Mary,F,1
+Anna,F,2
+Emma,F,3
+Jim,M,48
+Herman,M,49
+Paul,M,50

@@ -1,0 +1,6 @@
+Linda,F,1
+Mary,F,2
+Patricia,F,3
+Jack,M,48
+Johnny,M,49
+Roy,M,50

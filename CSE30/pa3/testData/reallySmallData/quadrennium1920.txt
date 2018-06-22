@@ -1,0 +1,6 @@
+Mary,F,1
+Dorothy,F,2
+Helen,F,3
+Michael,M,48
+Leo,M,49
+Elmer,M,50

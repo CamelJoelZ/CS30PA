@@ -1,0 +1,6 @@
+Mary,F,1
+Barbara,F,2
+Patricia,F,3
+Peter,M,48
+Dennis,M,49
+Earl,M,50

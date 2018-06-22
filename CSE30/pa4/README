@@ -1,0 +1,91 @@
+/*
+ * Filename: README
+ * Author: Zhuoer Wen
+ * Userid: cs30xgz
+ * Date: 06/02/2018
+ */
+
+Description
+-----------
+    a two part interactive program meant to check if 
+  an email is in a list of spam addresses or not. 
+    The first part will read in email data files and 
+  populate hash tables with these email addresses, 
+  then write out these populated tables into an output
+  file. 
+    The second part will allow for user interaction
+  with the data. It will first read in the tables that
+  were written to the output file from the first part and
+  will then allow the user to enter email addresses and 
+  check if they are spam. 
+    If the email address is found in all of the tables 
+  then there is a high chance that the email is a spam email. 
+  In our program, if the email address is found in all of 
+  the tables, then it is definitely a spam. 
+
+How to compile
+--------------
+  To compile this program, simply navigate to the directory containing the
+  source files for PA4 (which should include the Makefile) and type 'make'.
+
+How to run
+----------
+  To run the program, type the executable name
+  For example:
+
+	 ./create -i dataFile -o outFile [-s size] [-h]
+	 ./search -i inFile [-x] [-h]
+
+Normal output
+-------------
+cs30xgz@pi-cluster-005:~/pa4$ ./create -i emails/emails_10 -o testw
+cs30xgz@pi-cluster-005:~/pa4$ ./search -i testw -x
+	Enter a word: ti452@spam.me
+	ti452@spam.me is SPAM!
+	Enter a word: l
+	l is not SPAM!
+	Enter a word: 
+
+
+Abnormal output
+---------------
+  Abnormal output is printed to stderr.
+  For example:
+  	cs30xgz@pi-cluster-005:~/pa4$ ./search            
+	Search requires an infile argument.
+
+	Usage: ./search -i inFile [-x] [-h]
+
+	Missing file args
+
+	Usage: ./create -i dataFile -o outFile [-s size] [-h]
+
+	
+Testing
+-------
+  For pushToList, revHash, evenOddHash, populateTables and 
+  writeTables function, I make unit testing file to test them.
+  For pushToList, I tried to create a linkedlist and see if it 
+  pushes the struct correctly. For revHash I tried various random
+  value to see if it matches the result of result that I calculate
+  myself. For evenOddHash.s I also tried various random value to 
+  see if it matches the result that I calculate. For populateTables,
+  I create the corresponding struct and table and see if it is populated 
+  correctly. For writeTables, I try to write different size of files in
+  email file and use xxd to see if the hex version of the output is 
+  resonable. For the remaining function, for some of them I worte 
+  unit testing to test them, and also I use the correct functions above
+  and try all kinds of input to see if the result matches the sample 
+  executable. Or if the error message is matching the sample executable
+  when we type in wrong flag or missing flag, etc.
+
+  
+
+ANSWER:
+	1. You have to write the code yourself or ask tutor for help
+	in order to really learn something. I feel so sorry about refusing
+	you, but no I could not give you my code.
+
+	2. TAB
+	
+	3. colorscheme desert 

@@ -1,0 +1,6 @@
+Emily,F,1
+Ashley,F,2
+Hannah,F,3
+Charles,M,48
+Sean,M,49
+Connor,M,50

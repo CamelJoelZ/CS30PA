@@ -1,0 +1,61 @@
+==== Testing nameQuest.c ====
+Null tableEntry, Null name:    PASSED, (+0.50)
+Search empty tableEntry:       PASSED, (+0.50)
+Name found small tableEntry:   PASSED, (+0.50)
+Name not found larger tableEnt PASSED, (+0.50)
+Total for file nameQuest.c: 2.00
+
+Total so far: 2.00/15.00
+
+==== Testing hash.s ====
+Simple word to hash:           PASSED, (+0.50)
+Empty string to hash:          PASSED, (+0.50)
+Negative hash:                 PASSED, (+0.50)
+Non-letter characters:         PASSED, (+0.50)
+Total for file hash.s: 2.00
+
+Total so far: 4.00/15.00
+
+==== Testing getTableIndex.s ====
+String with small table:       PASSED, (+0.50)
+Negative hash with medium tabl PASSED, (+0.50)
+String w/large table:          PASSED, (+0.50)
+String non letter large table: PASSED, (+0.50)
+Total for file getTableIndex.s: 2.00
+
+Total so far: 6.00/15.00
+
+==== Testing convertStr.c ====
+standard number:               PASSED, (+0.50)
+Negative number:               PASSED, (+0.50)
+Number too large:              PASSED, (+0.50)
+Not a valid number:            PASSED, (+0.50)
+Total for file convertStr.c: 2.00
+
+Total so far: 8.00/15.00
+
+==== Testing parseCmd.c ====
+cmdString in simple list:      PASSED, (+0.50)
+cmdString not in simple list:  PASSED, (+0.50)
+cmdString is null:             PASSED, (+0.50)
+List is null:                  PASSED, (+0.50)
+Total for file parseCmd.c: 2.00
+
+Total so far: 10.00/15.00
+
+==== Testing populateNameData.c ====
+Null case:                     PASSED, (+0.25)
+Non existent dir case:         PASSED, (+0.25)
+no permission files case:      PASSED, (+0.25)
+malformed files case:          PASSED, (+0.25)
+really small data case:        PASSED, (+1.00)
+small data case:               PASSED, (+1.00)
+small data case, larger table: PASSED, (+1.00)
+real use case:                 PASSED, (+1.00)
+Total for file populateNameData.c: 5.00
+
+Total so far: 15.00/15.00
+
+
+Final total: 15.00/15.00
+

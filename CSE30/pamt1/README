@@ -1,0 +1,169 @@
+/*
+ * Filename: README
+ * Author: Zhuoer Wen
+ * Userid: cs30xgz
+ * Date: 05/18/2018
+ */
+
+
+ Description
+ -----------
+     This command line argument, array_size, is the size of the array
+     that will be initialized with values and then have its 
+     squared sum, square root sum, min and max calculated, 
+     sequentially in one thread (core) and then in parallel
+     over multiple threads (cores). 
+ How to compile
+ --------------
+     To compile this program, simply navigate to the directory containing the
+     source files for PAMT (which should include the Makefile) and 
+     type 'make'.
+      
+ How to run
+ ----------
+    To run the program, type the executable name
+    For example:
+      $ ./pamt1 array_size 
+
+Normal output. 
+-------------
+    An example of normal output would be the following:
+ 
+    [cs30xgz@its-cseb220-20]:pamt1:542$ ./pamt1 12
+    Using array size = 12
+    Initializing array with values using sequential initData()
+      [be patient with large values]
+
+      Checking that sequential initData produced the values as expected
+      Checking the first 12 bytes only
+      Should print out the string: "CSE30 Rocks!"
+      CSE30 Rocks!
+
+      Sequential initData time = 0.000002
+
+      Initializing array with same values using parallel initData()
+        [be less patient with large values]
+	Num of threads = 8
+
+	Checking that parallel initData produced the values as expected
+	Checking the first 12 bytes only
+	Should print out the string: "CSE30 Rocks!"
+	CSE30 Rocks!
+
+	Parallel initData time = 0.005563
+
+	*** initData Speed-up: 0.000288 ***
+
+	Sequential squared sum, min, max [be patient]
+	Sequential squaredSumMinMax time = 0.000001
+
+	Squared Sum is: 76677
+	Min value is: 32
+	Max value is: 115
+	Completed in 0.000001 sec
+
+	Parallel squared sum, min, max [don't need to be as patient]
+	Parallel squaredSumMinMax time = 0.000020
+
+	Squared Sum is: 76677
+	Min value is: 32
+	Max value is: 115
+	Completed in 0.000020 sec
+
+	*** squaredSumMinMax Speed-up: 0.030332 ***
+
+	Sequential sqrt sum, min, max [be patient]
+	Sequential sqrtSumMinMax time = 0.000005
+
+	Sqrt Sum is: 101.682258
+	Min value is: 32
+	Max value is: 115
+	Completed in 0.000005 sec
+
+	Parallel sqrt sum, min, max [don't need to be as patient]
+	Parallel sqrtSumMinMax time = 0.000015
+
+	Sqrt Sum is: 101.682258
+	Min value is: 32
+	Max value is: 115
+	Completed in 0.000015 sec
+
+	*** sqrtSumMinMax Speed-up: 0.336649 ***
+
+
+Abnormal output
+---------------
+
+	[cs30xgz@its-cseb220-20]:pamt1:543$ ./pamt1   
+
+	Usage: ./pamt1 array_size
+	   array_size  (must be >= 12 and <= 4294967295)
+
+
+Testing
+-------
+	I try to input different array size and compare it with
+	the sample output to see if there is any discrepency.
+	Besides that, try other value to see if the speed-up
+	meets my expectation of the program.
+
+Answer
+------
+1. ieng6
+
+2. workstation
+
+3. Since ieng6 have 8 low performance chips and workstations have 1
+   strong performance chip. When doing sequential task, the time for 
+   ieng6 will be really long. When doing the MT work, there will be a
+   significantly increase in the speed of MT since there are 7 more chips
+   help it doing the work. But for workstation, it is still doing the MT
+   work inside a single chip, but with more threads, thus the speed up 
+   will not be that big compared with workstation. Since the workstation 
+   has a higher performance chip compared with ieng6, the runtime for 
+   workstation will be shorter.
+
+4. 
+   ieng6:
+   speed up to 1: 250000
+   spped up to 2: 350000
+
+   worksation:
+   speed up to 1: 500 
+   spped up to 2: 4000
+
+5. 
+   ieng6:
+   speed up to 1: 3350000 
+   spped up to 2: 4000000
+
+   worksation:
+   speed up to 1: 2500
+   spped up to 2: 5000
+   
+6. 
+   ieng6:
+   speed up to 1: 2000000
+   spped up to 2: 3000000
+
+   worksation:
+   speed up to 1: 1500 
+   spped up to 2: 3000
+
+7.
+   ieng6:
+	when we add a parallel for the inner for loop,
+	it decreases the speed up
+	it makes it faster
+
+   workstation:
+   	when we add a parallel for the inner for loop,
+	it decreases the speed up.
+	it makes it slower 
+
+8.
+  Because in workstation, each core has 2 thread sharing the 
+  resources, which if we add more multithreading task to it
+  it will run slower.
+  However, the ieng6 has 8 independent core and thread, which 
+  will not slower it.

@@ -1,0 +1,125 @@
+/*
+ * Filename: README
+ * Author: Zhuoer Wen
+ * Userid: cs30xgz
+ * Date: 05/22/2018
+ */
+
+Description
+-----------
+   an interactive program that displays information
+   on the popularity of any given name from 1880-2016.
+   The program will read the name popularity data for 
+   each 4 year period (quadrennium) from 1880 to 2016
+   from pre-formatted data files. It will then prompt
+   the user to input commands to print statistics and
+   graph results for the input name.
+
+How to compile
+--------------
+  To compile this program, simply navigate to the directory containing the
+  source files for PA3 (which should include the Makefile) and type 'make'.
+
+How to run
+----------
+  To run the program, type the executable name
+  For example:
+
+	./pa3 -s 10000 -h
+
+Normal output
+-------------
+  cs30xgz@pi-cluster-016:~/pa3$ ./pa3
+
+  Commands are:
+  	graph	[name]	 Display a graph showing a name's rank over time.
+	stats	[name]	 List ranks by quadrennium for a name.
+	help 		 Display this message.
+
+Please enter a command: stats max
+
+Quadrennium  Gender  Rank  Gender  Rank
+	1880        F       -     M     182
+	1884        F       -     M     180
+	1888        F       -     M     148
+	1892        F       -     M     150
+	1896        F       -     M     129
+	1900        F       -     M     148
+	1904        F       -     M     140
+	1908        F       -     M     114
+	1912        F       -     M     100
+	1916        F       -     M     105
+	1920        F       -     M     116
+	1924        F       -     M     135
+	1928        F       -     M     138
+	1932        F       -     M     133
+	1936        F       -     M     142
+	1940        F       -     M     172
+	1944        F       -     M     200
+	1948        F       -     M     240
+	1952        F       -     M     255
+	1956        F       -     M     284
+	1960        F       -     M     316
+	1964        F       -     M     359
+	1968        F       -     M     387
+	1972        F       -     M     379
+	1976        F       -     M     379
+	1980        F       -     M     361
+	1984        F       -     M     243
+	1988        F       -     M     184
+	1992        F       -     M     182
+	1996        F       -     M     178
+	2000        F       -     M     162
+	2004        F       -     M     157
+	2008        F       -     M     104
+	2012        F       -     M     112
+	2016        F       -     M     118
+
+Max was not in the top 1000 female names from 1880 to 2016
+Max as a male name was most popular in 1912 with a rank of 100
+
+Abnormal output
+---------------
+  Abnormal output is printed to stderr.
+  For example:
+	cs30xgz@pi-cluster-016:~/pa3$ ./pa3 -k
+	./pa3: invalid option -- 'k'
+
+	Usage: ./pa3 [-d dirname] [-s tableSize] [-h]
+	Try './pa3 -h' for more information.
+	
+Testing
+-------
+  For convertStr, getTableIndex, hash, nameQuest, parseCmd and 
+  populateData function, I make unit testing file to test them.
+  For convertStr, I tried valid str, invalid str, str that is 
+  too long to test it. For getTableIndex I tried various random
+  value to see if it matches the result of the c version. For 
+  hash.s I also tried various random value to see if it matches
+  the result of the c version of it. For nameQuest, I create the 
+  corresponding struct and pass in various name to see if it can
+  find the indicating struct. Or if it is not in the struct list,
+  if it returns the corresponding value. For parseCmd I tried 
+  all the command in the pa3Strings.h and string that is not in 
+  this file to see if parseCmd return the index or indicating not 
+  in the list correctly. For the populateData I create the 
+  corresponding struct and pass in the small data, normal data
+  and big data directory to see if it populates the specific
+  struct correctly. For the drawGraph, generateGraph and handle
+  UserInput, main, I tried to run the ./pa3 multiple times to see
+  if it matches the ouput and result of the sample executable.
+
+ANSWER:
+1 Only acting with integrity can truly make a great 
+   environment for developing.
+
+2 Ctrl + a 
+
+3 ~ 
+   Toggle case of the character under the cursor, 
+   or all visually-selected characters.
+ 
+4 grep -n bar foo.txt
+
+5 .(dot) 
+

@@ -1,0 +1,6 @@
+Mary,F,1
+Barbara,F,2
+Patricia,F,3
+Howard,M,48
+Harry,M,49
+Louis,M,50

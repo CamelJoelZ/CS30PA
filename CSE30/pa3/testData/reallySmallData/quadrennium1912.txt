@@ -1,0 +1,6 @@
+Mary,F,1
+Helen,F,2
+Dorothy,F,3
+Peter,M,48
+Russell,M,49
+Frederick,M,50

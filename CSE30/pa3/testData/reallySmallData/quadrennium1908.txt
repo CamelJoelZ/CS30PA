@@ -1,0 +1,6 @@
+Mary,F,1
+Helen,F,2
+Margaret,F,3
+Stanley,M,48
+Leo,M,49
+Herman,M,50

@@ -1,0 +1,6 @@
+Mary,F,1
+Anna,F,2
+Helen,F,3
+Dewey,M,48
+Lee,M,49
+Herman,M,50

@@ -1,0 +1,6 @@
+Mary,F,1
+Dorothy,F,2
+Betty,F,3
+Bernard,M,48
+Melvin,M,49
+Marvin,M,50

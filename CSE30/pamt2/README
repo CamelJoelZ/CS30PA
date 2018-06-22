@@ -1,0 +1,92 @@
+/*
+ * Filename: README
+ * Author: Zhuoer Wen
+ * Userid: cs30xgz
+ * Date: 05/31/2018
+ */
+
+
+ Description
+ -----------
+     This program takes a list of long long integers (64 bit numbers,
+     up to about 9 quintillion in decimal) and displays information on
+     whether each number is prime and how long it took to determine that
+     with both sequential way and multi-threading way.
+
+ How to compile
+ --------------
+     To compile this program, simply navigate to the directory containing the
+     source files for PAMT (which should include the Makefile) and 
+     type 'make'.
+      
+ How to run
+ ----------
+    To run the program, type the executable name
+    For example:
+      $ ./pamt2 8000 200000
+
+Normal output. 
+-------------
+    An example of normal output would be the following:
+	[cs30xgz@its-cseb230-39]:pamt2:517$ ./pamt2 80 246813607
+
+	Calculating number of factors for 80 with sequential numOfFactors()
+	  [be patient with large values]
+	  80 is not prime
+	  Number of factors: 10
+	  Completed in 0.000004 sec
+
+	Calculating number of factors for 80 with parallel numOfFactors()
+	    [be less patient]
+	    Num of threads = 8
+	    80 is not prime
+	    Number of factors: 9
+	    Completed in 0.000047 sec
+
+	    *** numOfFactors Speed-up: 0.079680 ***
+
+
+        Calculating number of factors for 246813607 with sequential 
+	    [be patient with large values]
+	    246813607 is prime
+	    Number of factors: 2
+	    Completed in 1.917376 sec
+        Calculating number of factors for 246813607 with parallel 
+	     [be less patient]
+             Num of threads = 8
+             246813607 is prime
+             Number of factors: 2
+             Completed in 0.416685 sec
+
+             *** numOfFactors Speed-up: 4.601499 ***
+
+Abnormal output
+---------------
+	[cs30xgz@its-cseb230-39]:pamt2:519$ ./pamt2   
+
+	Usage: ./pamt2 num1 [num2 num3 ...]
+
+Testing
+-------
+	I try to input different number and compare it with
+	the sample output to see if there is any discrepency.
+	Besides that, try other value to see if the speed-up
+	meets my expectation of the program.
+
+Answer
+------
+ 	1. it does not matter, because the algorithm will iterate
+	through from lo to high no matter the n is prime or not.
+	The run time will not be affected by if n is prime or not.
+
+	2. The time of completing the task is the most important,
+	because the reason we use multi-threading is to gain a 
+	shorter run time compared with sequential method. If the 
+	speed up is huge, but the run time is long compared with 
+	a small speed up but short run time, the shorter run time
+	is definately more important. In general, the run time is the 
+	most important factor.
+
+	3.	At workstations: 3000
+		At ieng6: 2000000
+		AT pi-cluster: 100000

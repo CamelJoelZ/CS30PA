@@ -1,0 +1,97 @@
+/*
+ * Filename: README
+ * Author: Zhuoer Wen
+ * Userid: cs30xgz
+ * Date: 04/23/2018
+ */
+
+Description
+-----------
+  This program will parse 4 arguments width, border_char, filler
+  bowtie_char, and if there is any error with the parameters,
+  print out the error message to stderr. If there is no error,
+  print out the bowtie.
+
+How to compile
+--------------
+  To compile this program, simply navigate to the directory containing the
+  source files for PA1 (which should include the Makefile) and type 'make'.
+
+How to run
+----------
+  To run the program, type the executable name
+  For example:
+
+         ./pa1 arg1 arg2 arg3 arg4
+
+Normal output
+-------------
+  Normal output is printed to stdout.  An example of normal output would be
+  the following:
+
+cs30xgz@pi-cluster-010:~/pa1$  ./pa1 7 - x ! 
+
+----------------
+-!!xxxxxxxxxx!!-
+-!!!!xxxxxx!!!!-
+-!!!!!!xx!!!!!!-
+-!!!!!!!!!!!!!!-
+-!!!!!!xx!!!!!!-
+-!!!!xxxxxx!!!!-
+-!!xxxxxxxxxx!!-
+----------------		
+
+Abnormal output
+---------------
+  Abnormal output is printed to stderr.
+  For example:
+
+  ./pa1 7a 5 a b
+
+      width(7a) must be an integer
+
+
+Testing
+-------
+
+Assembly funcs is tested with testisInRange.c, testmyRemainder.c and 
+testisEven.c including cases that num not in range, num in range and 
+wrong max and min for the first one. num that has remainder, num that 
+does not for the second one. num that is even, num that is odd and 0 
+for the third one. From the value that are passed in these test file,
+we can cover all the cases of three functions. And the result is that 
+all the three functions work well. And for the displayBowtie.s function,
+I use the value in the write up and other values i come up with to test 
+it. And all the results meet my expectation. For the parse checking, I 
+used the value in the write up and some values I come up with myself 
+the result match the write up and my expectation.
+
+ANSWER:
+
+1. dd 
+   dnd
+
+2. yy
+   p
+
+3. git status
+
+4. git checkout -b "branch name"
+
+5. git diff
+
+6. x $r0 
+
+7. p/x $r1
+
+8. p height
+   p $r0 
+
+9. p *endptr
+
+10. p endptr
+
+11. p/d errno
+
+12. I did all the work by myself. When I encounted trouble, I ask man 
+page and tutor for help.

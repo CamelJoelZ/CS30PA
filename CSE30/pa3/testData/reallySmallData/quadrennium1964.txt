@@ -1,0 +1,6 @@
+Lisa,F,1
+Mary,F,2
+Kimberly,F,3
+Troy,M,48
+Tony,M,49
+Roger,M,50

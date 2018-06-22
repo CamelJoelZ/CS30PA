@@ -1,0 +1,6 @@
+Mary,F,1
+Susan,F,2
+Linda,F,3
+Alan,M,48
+Dale,M,49
+Lawrence,M,50

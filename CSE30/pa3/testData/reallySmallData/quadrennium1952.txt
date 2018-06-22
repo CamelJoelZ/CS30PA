@@ -1,0 +1,6 @@
+Mary,F,1
+Linda,F,2
+Deborah,F,3
+Walter,M,48
+Dale,M,49
+Ricky,M,50

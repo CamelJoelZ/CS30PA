@@ -1,0 +1,6 @@
+Emma,F,1
+Olivia,F,2
+Ava,F,3
+Thomas,M,48
+Aaron,M,49
+Lincoln,M,50

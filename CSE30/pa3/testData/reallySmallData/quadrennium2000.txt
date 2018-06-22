@@ -1,0 +1,6 @@
+Emily,F,1
+Madison,F,2
+Hannah,F,3
+Luke,M,48
+Brian,M,49
+Isaac,M,50

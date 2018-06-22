@@ -1,0 +1,6 @@
+Jennifer,F,1
+Amy,F,2
+Michelle,F,3
+George,M,48
+Jose,M,49
+Douglas,M,50

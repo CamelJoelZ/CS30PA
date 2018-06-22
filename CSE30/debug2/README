@@ -1,0 +1,186 @@
+/*
+ * Filename: README
+ * Author: Zhuoer Wen
+ * Userid: cs30xgz
+ * Date: 05/31/2018
+ */
+
+Bug 1:
+	Effects: 
+		freqs.c:40:13: warning: passing argument 1 of 
+		'perror' from incompatible pointer type
+		[-Wincompatible-pointer-types]
+		     perror( inFile );
+
+	Line Num:
+		freqs.c:40:13
+	Fix:
+	   Before:
+	   	perror( inFile );
+	   After:
+		perror( inFilename );
+	Explantion:	
+		Wrong parameters for perror. A string should be passed in.
+
+Bug 2:
+	Effects: 
+		accumulateWordCount.s: Assembler messages:
+		accumulateWordCount.s:74: Error: shift expression 
+		expected -- `add fp,sp,FP_OFFSET'
+		accumulateWordCount.s:76: Error: immediate expression 
+		requires a # prefix -- `str r0,[fp,CURR_COUNT_OFF]'
+
+	Line Num:
+		accumulateWordCount.s: 11
+	Fix:
+	   Before:
+	   	No .syntax unified
+	   After:
+		.syntax unified
+	Explantion:
+		There is no syntax specified in the assembly file, which
+		result in the syntax error.
+
+Bug 3:
+	Effects: 
+		cs30xgz@pi-cluster-061:~/debug2$ ./freqs files/avengers_ult
+		Segmentation fault
+
+	Line Num:
+		0x000110cc in compareFreqWord () at compareFreqWord.s:50
+
+	Fix:
+	   Before:
+	   	ldr   r0, [r0, r3]
+		ldr   r1, [r1, r3]
+	   After:
+		add     r0, r0, r3
+		add     r1, r1, r3
+	Explantion:
+		If we use bracket and ldr, we will get the first char of
+		both string in r0 and r1. However, what we want to pass in
+		to the strncmp is the string, which should be the address
+		of the first char. So we use add to get the address of the 
+		starting char in each string.
+
+Bug 4:
+	Effects: 
+		Program received signal SIGSEGV, Segmentation fault.
+		0x00010f50 in parseFile (wordsListPtr=0x0, inFile=0x23008) 
+		at parseFile.c:125
+		125	  *wordsListPtr = wordsList;
+		#0  0x00010f50 in parseFile (wordsListPtr=0x0, inFile=0x23008)
+		at parseFile.c:125
+		#1  0x00010868 in main (argc=2, argv=0x7efffc54) at freqs.c:48
+
+	Line Num:
+		freqs.c: 45
+	Fix:
+	   Before:
+		struct Freq ** wordsList = NULL;
+		numWords = parseFile( wordsList, inFile );
+		handleUserInput( *wordsList, numWords );
+	   After:
+		struct Freq * wordsList = NULL;
+		numWords = parseFile( &wordsList, inFile );
+		handleUserInput( wordsList, numWords );
+	Explantion:	
+		in order to update the ptr declared outside of parseFile 
+		function, we should pass in the address of the wordsList,
+		which itself is a pointer to struct Freg, instead of passing
+		in a double ptr directly. By passing in a double ptr, the ptr
+		will not be updated after the parseFile function ends.
+		Also, since we are passing in a double ptr, trying to dereference
+		it will result in seg fault.
+
+Bug 5:
+	Effects: 
+		It performs display function instead of freqs when we 
+		type the command freqs
+
+	Line Num:
+		parseCmd.c: 36
+	Fix:
+	   Before:
+	   if ( strncmp( commands[i], cmdString, strlen(commands[i]) + 1 )
+
+	   After:
+	   if ( strncmp( commands[i], cmdString, strlen(commands[i]) + 1 
+	   ) == 0 )	
+	Explantion:	
+	  	Before it uses the return value itself to determine when to
+		return i. However, what we need is that if the return value 
+		of strncmp is equal to 0 which means two strings are the same,
+		instead of return value itself to determine when to return.
+		Thus, I change the condition to if return val == 0
+
+Bug 6:
+	Effects: 
+		
+		Please enter a command: freqs Stark
+		Segmentation fault
+
+	Line Num:
+		
+		accumulateWordCount.s: 76
+	Fix:
+	   Before:
+	   	no instruction to adjust the position of sp
+	   After:
+ 		sub     sp, sp, LOCAL_VAR_SPACE
+        	sub     sp, sp, PARAM_SPACE
+   	        sub     sp, sp, ADD_ARG_SPACE
+
+	Explantion:
+		When passing in the 5th and 6th parameters of bsearch,
+		it uses sp to locate the position of arg5 and arg 6
+		sp+0 and sp+4.
+		However, it did not adjust the position of sp, so that 
+		it will overwrite the exsiting local variables and
+		mess up the stack fream.
+Bug 7:	
+	Effects: 
+		freqs not working correctly, different value each round
+		Please enter a command: freqs Stark
+
+		Sum of frequencies of the words: 32
+
+		Please enter a command: freqs Stark
+
+		Sum of frequencies of the words: 64
+
+	Line Num:
+		handleUserInput:84 
+	Fix:
+	   Before:
+		static unsigned int sumFreqs;
+	   After:
+		unsigned int sumFreqsi = 0;
+	Explantion:
+		it declares the sumFreqs as static, which will 
+		result in that the value for each interactive 
+		round will add up to sumFreqs. However, we only
+		want the sumFreqs to be used in a single round
+		and then set it back to 0 in the next round.
+
+Bug 8: 
+	Effects: 
+		When we try a larger file input, it seg faults.
+		#2  0x00010d08 in parseFile (wordsListPtr=0x7efffb18,
+		inFile=0x22008) at parseFile.c:88
+
+	Line Num:
+		parseFile.c:99
+
+	Fix:
+	   Before:
+		it does not update wordslist after realloc success
+	   After:
+	   	wordsList = tmp;
+
+	Explantion:
+		Since we are only using tmp to make sure that the 
+		if memory reallocation is successful. If it is successful,
+		wo do need to update the original memory ptr to tmp
+		,which is the wordsList ptr.
+

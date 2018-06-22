@@ -1,0 +1,113 @@
+/*
+ * Filename: README
+ * Author: Zhuoer Wen
+ * Userid: cs30xgz
+ * Date: 05/07/2018
+ */
+
+Description
+-----------
+  This program will parse 3 possible arguments starttime, ticks, 
+  and help, and if there is any error with the arguments,
+  print out the error message to stderr. If there is no error,
+  print out the time and corresponding bcd clock .
+
+How to compile
+--------------
+  To compile this program, simply navigate to the directory containing the
+  source files for PA2 (which should include the Makefile) and type 'make'.
+
+How to run
+----------
+  To run the program, type the executable name
+  For example:
+
+	 ./pa2 [numTicks [startTime]] | [--help]         
+
+Normal output
+-------------
+  Normal output is printed to stdout.  An example of normal output would be
+  the following:
+
+	30xgz@pi-cluster-035:~/pa2$ ./pa2 1
+	Tue May  8 20:55:44 2018
+
+	PPPPPPPPPPPP
+	M .O .. .. M
+	P .. OO OO P
+	M .. .. .. M
+	P .. OO .. P
+	M 08 55 44 M
+	PPPPPPPPPPPP
+
+	PPPPPPPPPPPP
+	M .O .. .. M
+	P .. OO OO P
+	M .. .. .. M
+	P .. OO .O P
+	M 08 55 45 M
+	PPPPPPPPPPPP
+
+Abnormal output
+---------------
+  Abnormal output is printed to stderr.
+  For example:
+
+  cs30xgz@pi-cluster-035:~/pa2$ ./pa2 2 25:0:0 too_many
+
+  Usage: ./pa2 [numTicks [startTime]] | [--help]
+      numTicks  -- (optional) number of clock ticks to display
+	        Must be within the range of [0-61]
+		Default number of ticks is 7
+      startTime -- (optional) starting time of the clock entered 
+		HH must be within the range of [0-12]
+		MM must be within the range of [0-59]
+		SS must be within the range of [0-59]
+		(A|a|P|p) one option must be specified
+		Default start time is the current time
+
+Testing
+-------
+
+Assembly funcs is tested with testsetClock.c, testincrementClockValue.c 
+testinterpretTime.c and testtickClock including cases that am time, pm time 
+wrong time format. Time that exceed hour or minute or second range. 
+From the value that are passed in these test file,
+we can cover most cases of four functions. And the result is that 
+all the four functions work well. And for the printClock function,
+I use the value in the write up and other values i come up with to test 
+it. And all the results meet my expectation. For the parse checking, I 
+used the value in the write up and some values I come up with myself to 
+try all kinds of input error checking: include wrong format, out of range,
+missing args and too many args. The result matches my expectation.
+
+ANSWER:
+
+1. I did all the work by myself. When I encounted trouble, I ask man 
+page and tutor for help.
+
+2. int second = *(arr + 1)
+
+3. :%s/foo/bar/g
+   :%s/foo/bar/gc
+   y to substitute
+
+4. horizontally using :split file.txt
+   vertically using :vsplit file.txt
+   ctrl-w ctrl-w    - move cursor to another window
+
+5. :q!
+
+6. :set list
+   :set nolist
+
+7. :set number
+
+8. grep 'errno' main.c
+   grep 'errno' main.c -C 5
+
+9. chmod 000 file.txt
+   ls -l file.txt
+
+10. vim +x file.txt
+    :x

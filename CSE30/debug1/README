@@ -1,0 +1,155 @@
+/*
+ * Filename: README
+ * Author: Zhuoer Wen
+ * Userid: cs30xgz
+ * Date: 05/18/2018
+ */
+
+Bug 1:
+	Effects: 
+	   main.c:39:10: error: declaration of 'ciphers' as array of voids
+	   void (*ciphers)(byteArray_t *, byteArray_t *, byteArray_t *)[] = { 
+
+	Line Num:
+	   main.c 39
+
+	Fix:
+	   Before:
+	   void (*ciphers)(byteArray_t *, byteArray_t *, byteArray_t *)[]
+	   After:
+	   void (* ciphers []) (byteArray_t *, byteArray_t *, byteArray_t *)
+
+	Explantion:
+	   array of pointers to function declaration wrong
+
+Bug 2:
+	Effects: 
+	   vigenereEnc.s:66: Error: ARM 
+	   register expected -- `str 0,[fp,I_OFFSET]'
+
+	Line Num:
+	   vigenereEnc.s:66
+
+	Fix:
+	   Before:
+	   str     0, [fp, I_OFFSET]
+	   After:
+	   mov     r2, 0
+	   str     r2, [fp, I_OFFSET]
+
+	Explantion:
+	   cannot store a number dirctly to memory address
+	   mov it to a register first 
+	   then store the value in a register to a mem address
+
+Bug 3:
+	Effects: 
+	   /home/linux/ieng6/cs30x/cs30xgz/debug1/getKeyByte.c:29
+	   : undefined reference to `myRand'
+
+
+	Line Num:
+	   getKeyByte.c:29
+	   myRand.s: 16
+
+	Fix:
+	   Before:
+	   	no .global myRand
+	   After:
+	   	.global myRand
+
+	Explantion:
+	   It does not have .global myRand before the porlogue 
+	   of the function myRand, which makes it not accessible
+	   within the file
+
+Bug 4:
+	Effects: 
+		cs30xgz@pi-cluster-097:~/debug1$ 
+		./crypt e 0 < files/movie > encfile
+
+			Cipher_Index: Invalid int '0'
+		Cannot parse the cipher type correctly
+	Line Num:
+		main.c:75
+
+	Fix:
+	   Before:
+		  if ( endptr != NULL ) {
+
+	   After:
+	   	  if ( *endptr != '\0' ) {
+
+	Explantion:
+	   1: we should expect the value of the enptr to be a null terminator
+	   which is '\0' in valid int case instead of NULL
+	   2. we should compare the value that enptr points to with null 
+	   terminator
+	   before it uses enptr, which is the address of the ptr.
+
+Bug 5:
+	Effects: 
+           cs30xgz@pi-cluster-094:~/debug1$  ./crypt e 0 < files/movie > encfile
+	   Segmentation fault
+	   #0  vigenereEnc () at vigenereEnc.s:74
+	   #1  0x00010a90 in main (argc=3, argv=0x7efffc64) at main.c:124
+
+	Line Num:
+	   vigenereEnc.s:74
+
+	Fix:
+	   Before:
+		ldr     r3, [fp, OUT_OFFSET]
+		ldr     r1, =byteArray_lenOffset
+		ldr     r3, [r3, r1]
+	   After:
+		ldr     r3, [fp, OUT_OFFSET]
+		ldr     r1, =byteArray_lenOffset
+		ldr     r1, [r1]
+		ldr     r3, [r3, r1]
+	   	
+	Explantion:
+		it only ldr the address of byteArray_lenOffset 
+		into r1
+		but what we want is the value of that variable
+		we have to dereference it to get the value
+		aka: ldr r1, [r1]
+
+Bug 6:
+	Effects: 
+	   infinite runing the program without stop
+
+	Line Num:
+	   myRand () at myRand.s:65
+
+	Fix:
+	   Before:
+	   	pop	{fp, lr}
+	   After:
+		pop     {fp, pc}
+
+	Explantion:
+		it should pop the lr into the pc to get the function 
+		back to the right position of caller's stack 
+
+Bug 7:
+	Effects: 
+	   ./crypt e 1 < files/movie > encfile
+	   can not crypt a file using '1'(XOR) flag correctly
+		
+	Line Num:
+	   xorEnc.s:52
+
+	Fix:
+	   Before:
+	   	push    {fp, lr}
+
+	   After:
+		push    {fp, lr}
+		add     fp, sp, FP_OFFSET
+
+	Explantion:
+		it does not set the fp correctly before doing 
+		assembly instruction, which will result in that 
+		the pop cannot pop the stack correctly
+

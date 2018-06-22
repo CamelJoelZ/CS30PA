@@ -1,0 +1,6 @@
+Mary,F,1
+Anna,F,2
+Margaret,F,3
+Herman,M,48
+Jack,M,49
+Frederick,M,50

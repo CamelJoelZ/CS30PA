@@ -1,0 +1,6 @@
+Mary,F,1
+Lisa,F,2
+Susan,F,3
+Roger,M,48
+Jeff,M,49
+Andrew,M,50

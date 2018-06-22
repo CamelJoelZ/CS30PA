@@ -1,0 +1,6 @@
+Mary,F,1
+Betty,F,2
+Barbara,F,3
+Anthony,M,48
+Leonard,M,49
+Ernest,M,50

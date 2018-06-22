@@ -1,0 +1,6 @@
+Mary,F,1
+Linda,F,2
+Barbara,F,3
+Albert,M,48
+Harry,M,49
+Alan,M,50

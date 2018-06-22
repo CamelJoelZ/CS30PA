@@ -1,0 +1,6 @@
+Mary,F,1
+Helen,F,2
+Anna,F,3
+Herman,M,48
+Oscar,M,49
+Michael,M,50
